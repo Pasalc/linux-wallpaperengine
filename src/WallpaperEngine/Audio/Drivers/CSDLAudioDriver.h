@@ -6,7 +6,7 @@
 #include "WallpaperEngine/Audio/CAudioStream.h"
 #include "WallpaperEngine/Audio/Drivers/CAudioDriver.h"
 
-#include <SDL.h>
+#include <SDL2/SDL.h>
 
 #define MAX_AUDIO_FRAME_SIZE 192000
 

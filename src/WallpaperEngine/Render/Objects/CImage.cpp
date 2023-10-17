@@ -276,14 +276,16 @@ CImage::CImage (CScene* scene, Core::Objects::CImage* image) :
 void CImage::setup ()
 {
     // do not double-init stuff, that's bad!
-    if (this->m_initialized)
+    if (this->m_initialized){
         return;
+    }
 
     // TODO: SUPPORT PASSTHROUGH (IT'S A SHADER)
 
     // passthrough images without effects are bad, do not draw them
-    if (this->getImage ()->isPassthrough() && this->getImage ()->getEffects ().empty ())
+    if (this->getImage ()->isPassthrough() && this->getImage ()->getEffects ().empty ()){
         return;
+    }
 
     {
         // generate the main material used to render the image
@@ -293,8 +295,9 @@ void CImage::setup ()
         );
 
         // add blendmode to the combos
-        for (const auto& cur : this->m_material->getPasses ())
+        for (const auto& cur : this->m_material->getPasses ()){
             this->m_passes.push_back (cur);
+        }
     }
 
     // prepare the passes list
