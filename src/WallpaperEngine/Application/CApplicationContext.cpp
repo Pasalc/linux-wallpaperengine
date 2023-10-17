@@ -70,7 +70,7 @@ CApplicationContext::CApplicationContext (int argc, char* argv[])
         .audio =
         {
             .enabled = true,
-            .volume = 15,
+            .volume = 50,
             .automute = true
         },
         .mouse =
@@ -178,7 +178,7 @@ CApplicationContext::CApplicationContext (int argc, char* argv[])
                 break;
 
             case 'v':
-                this->settings.audio.volume = std::max (atoi (optarg), 128);
+                this->settings.audio.volume = std::min (atoi (optarg), 128);
                 break;
 
             case 'c':
