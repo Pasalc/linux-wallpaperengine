@@ -257,7 +257,8 @@ namespace WallpaperEngine::Render::Shaders
         this->m_compiledContent = "";
         this->m_includesContent = "";
         this->m_includesProcessed = false;
-
+        //MINE CODE
+        this->m_compiledContent += "#define BONECOUNT 128";
         // search preprocessor macros and parse them
         while (it != this->m_content.end () && !this->m_error)
         {
@@ -778,8 +779,14 @@ namespace WallpaperEngine::Render::Shaders
         {
             float value = 0;
 
-            if (constant == this->m_constants.end ())
-                value = (*defvalue).get <float> ();
+            if (constant == this->m_constants.end ()){
+                if(defvalue->is_string()){
+                    value = std::stof(defvalue->get<std::string>());
+                }
+                else{
+                    value = (*defvalue).get <float> ();
+                }
+            }
             else if ((*constant).second->is <CShaderConstantFloat> ())
                 value = *(*constant).second->as <CShaderConstantFloat> ()->getValue ();
             else if ((*constant).second->is <CShaderConstantInteger> ())
