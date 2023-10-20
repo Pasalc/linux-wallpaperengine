@@ -26,6 +26,10 @@ int main (int argc, char* argv[])
     initLogging ();
 
     WallpaperEngine::Application::CApplicationContext appContext (argc, argv);
+    if(appContext.settings.general.defaultBackground.empty ()){
+        sLog.error("\nNo background was provided. Provide background path or backgroung id. Aborting");
+        return 1;
+    }
     WallpaperEngine::Application::CWallpaperApplication app (appContext);
 
     // halt if the list-properties option was specified
